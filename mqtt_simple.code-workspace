@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "mqtt_simple",
+			"path": "."
+		}
+	],
+	"settings": {
+		"nrf-connect.applications": [
+			"${workspaceFolder}"
+		],
+		"nrf-connect.topdir": "${nrf-connect.sdk:2.1.2}",
+		"nrf-connect.toolchain.path": "${nrf-connect.toolchain:2.1.2}",
+		"files.associations": {
+			"system_error": "c"
+		}
+	}
+}

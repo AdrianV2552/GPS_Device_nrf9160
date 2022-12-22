@@ -5,6 +5,31 @@
 #
 
 menu "MQTT simple sample"
+
+#// Start:GNSS simple import modules/////////////////////////////////////////////////////
+
+# STEP 3.1 - Define configuration for fix interval
+config GNSS_PERIODIC_INTERVAL
+	int "Fix interval for periodic GPS fixes"
+	range 10 65535
+	#original is 120 seconds
+	default 120
+	help
+	  Fix interval (in seconds) for periodic fixes.
+
+# STEP 3.2 - Define configuration for fix timeout
+config GNSS_PERIODIC_TIMEOUT
+	int "Fix timeout for periodic GPS fixes"
+	range 0 65535
+	default 480
+	help
+	  Fix timeout (in seconds) for periodic fixes.
+	  If set to zero, GNSS is allowed to run indefinitely until a valid PVT estimate is produced.
+
+
+#// End:GNSS simple import modules//////////////////////////////////////////////////////
+
+
 config MQTT_PUB_TOPIC
 	string "MQTT publish topic"
 	default "my/publish/topic"
@@ -39,7 +64,7 @@ config MQTT_PAYLOAD_BUFFER_SIZE
 
 config BUTTON_EVENT_PUBLISH_MSG
 	string "The message to publish on a button event"
-	default "Hello from nRF91 MQTT Simple Sample"
+	default "latitude,longitude"
 
 config BUTTON_EVENT_BTN_NUM
 	int "The button number"
@@ -62,6 +87,7 @@ config MQTT_TLS_SESSION_CACHING
 
 config MQTT_TLS_PEER_VERIFY
 	int "Set peer verification level"
+	#0 on other mqtt example
 	default 2
 	help
 		Set to 0 for VERIFY_NONE, 1 for VERIFY_OPTIONAL, and 2 for
